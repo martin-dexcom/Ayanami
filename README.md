@@ -12,7 +12,7 @@ $ npm i
 ```
 ### Run the app
 ```
-node index.js
+$ node index.js
 ```
 
 ## Future improvements
