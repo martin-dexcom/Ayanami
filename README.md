@@ -1,4 +1,5 @@
 # Ayanami
+Convert Xcode's Test Results into a CSV file!
 
 ## Pre-requisites
 You'll need to have Node.js and NPM installed before running this app.
