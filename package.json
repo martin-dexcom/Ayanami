@@ -9,7 +9,12 @@
   "author": "Fernando Martin Garcia Del Angel",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.2",
+    "cli-spinners": "^2.6.1",
     "csv-parser": "^3.0.0",
-    "csv-writer": "^1.6.0"
+    "csv-writer": "^1.6.0",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.2.0",
+    "ora": "^6.0.1"
   }
 }
