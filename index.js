@@ -8,14 +8,14 @@ const { parseXcodeTest } = require('./Utils/TestParser')
 console.log(chalk.blue(figlet.textSync('Ayanami')))
 console.log(chalk.cyan('Author: Martin Garcia'))
 console.log(chalk.cyan('Copyright: (C) Dexcom 2021'))
-console.log("\n")
+console.log("")
 
 const main = async () => {
     inquirer.prompt([
         {
             type: 'input',
             name: 'filepath',
-            message: 'Test filepath (you can drag the file from Finder)'
+            message: 'Test filepath (you can drag the file from Finder)\n? This file should be under DerivedData/[Your Project]/Test/ folder'
         },
         {
             type: 'output',
