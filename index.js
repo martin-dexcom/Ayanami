@@ -2,7 +2,7 @@ const inquirer = require('inquirer')
 const figlet = require('figlet')
 const chalk = require('chalk')
 
-const { convertTestResultToJSON } = require('./Utils/XcodeUtils')
+const { convertTestResultToJSON, getDerivedDataPath } = require('./Utils/XcodeUtils')
 const { parseXcodeTest } = require('./Utils/TestParser')
 
 console.log(chalk.blue(figlet.textSync('Ayanami')))
@@ -11,11 +11,13 @@ console.log(chalk.cyan('Copyright: (C) Dexcom 2021'))
 console.log("")
 
 const main = async () => {
+    var derivedDataPath = await getDerivedDataPath()
+    derivedDataPath += '/[Your Project]/Test/'
     inquirer.prompt([
         {
             type: 'input',
             name: 'filepath',
-            message: 'Test filepath (you can drag the file from Finder)\n? This file should be under DerivedData/[Your Project]/Test/ folder'
+            message: 'Test filepath (you can drag the file from Finder)\n? This file should be under: ' + derivedDataPath
         },
         {
             type: 'output',
@@ -24,13 +26,10 @@ const main = async () => {
             default: "./"
         }
     ])
-    .then((answers) => {
-        convertTestResultToJSON(answers['filepath'])
-        .then((json) => {
-            const csv = parseXcodeTest(json, answers['outputfilepath'], () => {
-                // all good!
-            })
-        })
+    .then( async (answers) => {
+        let json = await convertTestResultToJSON(answers['filepath'])
+        let targets = await parseXcodeTest(json, answers['outputfilepath'])
+        console.log("Successfully wrote %i number of files", targets)
     })
     .catch((error) => {
     

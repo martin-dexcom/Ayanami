@@ -15,9 +15,8 @@ const getCodeCoverage = (coveredLines, executableLines) => {
  * @param {JSON} file JSON formatted test file
  * @param {String} filepath System path to store the text results
  */
-const parseXcodeTest = (file, filepath) => {
+const parseXcodeTest = async (file, filepath) => {
     let targets = file['targets']
-
     for(const target of targets) {
         let targetName = target['name']
         let testedFileRows = []
@@ -41,9 +40,11 @@ const parseXcodeTest = (file, filepath) => {
         csvWriter
         .writeRecords(testedFileRows)
         .then(() => {
-            console.log('CSV file for %s was written successfully.',targetName)
+            
         })
     }
+
+    return await Promise.resolve(targets.length)
 }
 
 module.exports = {
