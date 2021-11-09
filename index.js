@@ -12,7 +12,7 @@ console.log("")
 
 const main = async () => {
     var derivedDataPath = await getDerivedDataPath()
-    derivedDataPath += '/[Your Project]/Test/'
+    derivedDataPath += '/[Your Project]/Logs/Test'
     inquirer.prompt([
         {
             type: 'input',
